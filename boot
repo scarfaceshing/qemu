@@ -2,7 +2,9 @@
 
 # ---------- 64 BIT -------------- #
 
-ISO=archlinux-2024.05.01-x86_64.iso
+# ISO=archlinux-2024.05.01-x86_64.iso
+
+ISO=./archiso/output_iso/archlinux-2024.06.10-x86_64.iso # my archlinux iso test image
 
 if [[ "$1" == "efi" ]]; then
 
@@ -11,15 +13,12 @@ qemu-system-x86_64 -enable-kvm \
     -cdrom $ISO \
     -boot menu=on \
     -drive file=Image.img \
-    -m 2G \
+    -m 4G \
     -cpu host \
     -vga virtio \
     -display sdl,gl=on \
     -serial none \
     -smp cores=2 \
-    # -spice port=5900,disable-ticketing=on \
-    # -device virtio-serial,chardev=spicechannel0,name=com.redhat.spice.0 \
-    # -chardev spicevmc,id=spicechannel0,name=vdagent
 
 elif [[ "$1" == "bios" ]]; then
 
@@ -27,7 +26,7 @@ qemu-system-x86_64 -enable-kvm \
     -cdrom $ISO \
     -boot menu=on \
     -drive file=Image.img \
-    -m 2G \
+    -m 4G \
     -cpu host \
     -vga virtio \
     -display sdl,gl=on \
